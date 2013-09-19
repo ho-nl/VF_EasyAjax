@@ -69,8 +69,9 @@ class VF_EasyAjax_Model_Response extends Varien_Object
 
     public function loadContent($actionContent, $customContent)
     {
+        $layout = $this->_loadControllerLayouts();
+
         if ($actionContent) {
-            $layout = $this->_loadControllerLayouts();
             $actionContentData = array();
             foreach ($actionContent as $_content) {
                 $_block = $layout->getBlock($_content);
@@ -84,7 +85,6 @@ class VF_EasyAjax_Model_Response extends Varien_Object
         }
 
         if ($customContent) {
-            $layout = $this->_loadCustomLayouts();
             $customContentData = array();
             foreach ($customContent as $_content) {
                 $_block = $layout->getBlock($_content);
@@ -121,34 +121,9 @@ class VF_EasyAjax_Model_Response extends Varien_Object
             Mage::app()->getRequest()->getRequestedControllerName() . '_' .
             Mage::app()->getRequest()->getRequestedActionName();
         $update->addHandle(strtolower($fullActionName));
-
-        //load updates
-        $update->load();
-        //generate xml
-        $layout->generateXml();
-        //generate layout blocks
-        $layout->generateBlocks();
-
-        return $layout;
-    }
-
-    /**
-     * Load custom layout
-     *
-     * @return Mage_Core_Model_Layout
-     */
-    protected function _loadCustomLayouts()
-    {
-        $layout = Mage::app()->getLayout();
-        $update = $layout->getUpdate();
-        // load default custom handle
-        $update->addHandle('easy_ajax_default');
-        // load action handle
-        $fullActionName = Mage::app()->getRequest()->getRequestedRouteName() . '_' .
-            Mage::app()->getRequest()->getRequestedControllerName() . '_' .
-            Mage::app()->getRequest()->getRequestedActionName();
         $update->addHandle('easy_ajax_' . strtolower($fullActionName));
 
+        //load updates
         if (Mage::app()->useCache('layout')){
             $cacheId = $update->getCacheId().'_easy_ajax';
             $update->setCacheId($cacheId);
