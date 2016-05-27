@@ -1,5 +1,8 @@
 # VF_EasyAjax Module
 
+[![Build Status](https://travis-ci.org/hws47a/VF_EasyAjax.svg?branch=master)](https://travis-ci.org/hws47a/VF_EasyAjax)
+[![Codacy Badge](https://api.codacy.com/project/badge/grade/293388b1fa664d6ab6f1bed025a963e0)](https://www.codacy.com/app/hws47a/VF_EasyAjax)
+
 Allows frontend developers send ajax requests for every page and get Json response.  
 You don't need to work with app/code section of Manento and change any PHP code.  
 Make all what you need works via Ajax using only layout xmls, theme templates and javascript.  
@@ -9,11 +12,13 @@ In the Json response frontend developers can receive:
 * Some blocks from current page layout
 * Any block that should be added to special layout xml
 
-CURRENTLY IT WORKS MINIMUM ON 2 PROJECTS  
+CURRENTLY IT WORKS MINIMUM ON 4 PROJECTS  
   
 See the example of using Easy Ajax extension: [Ajax Cart extension with only one JS file and without any PHP code](https://github.com/hws47a/VF_AjaxCart).  
   
 To easy update this module later, install it from [Magento Connect](http://www.magentocommerce.com/magento-connect/catalog/product/view/id/16401/s/easy-ajax-6790/)
+  
+Developer: [Vladimir Fishchenko](http://fishchenko.com/)  
   
 # What's new?  
   
@@ -83,3 +88,12 @@ Example:
   
 Instead of using easy_ajax=1 in params you can use RESTful interface and .json to action name.  
 Example: instead of `customer/account/loginPost?easy_ajax=1` you can use `customer/account/loginPost.json`
+
+NOTE: This feature is disabled by default, to enable it just uncomment default/web/routers/json in config.xml
+
+## Unit Tests
+
+Unit Tests writing is in progress.  
+To run PHP tests use EcomDev_PHPUnit module.  
+To run Js file test use CasperJs.  
+
